@@ -230,6 +230,15 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 	border-color: transparent;
 }
 
+/* CSS */
+/* CSS */
+.logo {
+  height: 5rem;
+  width: 12rem;
+  object-fit: contain; /* Optional: Preserve aspect ratio */
+}
+
+
 /************ Banner Css ************/
 .banner {
   margin-top: 0;
@@ -304,14 +313,29 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .skill {
   padding: 0 0 50px 0;
   position: relative;
+  
 }
+/* CSS */
+/* CSS */
+/* CSS */
+/* CSS */
 .skill-bx {
-  background: #151515;
+  background-image: url("./assets/img/cusat.png");
+  background-color: #3f3f3f;
   border-radius: 64px;
   text-align: center;
   padding: 60px 50px;
   margin-top: -60px;
+  background-blend-mode: multiply; /* Make the background image darker */
+  color: white; /* Set the text color to white */
+  mix-blend-mode: screen; /* Keep the text at its original brightness */
+  background-size: cover; /* Make the background image fill the box */
 }
+
+
+
+
+
 .skill h2 {
 	font-size: 45px;
 	font-weight: 700;
@@ -471,6 +495,10 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
   padding: 60px 0 200px 0;
 }
+/* .send-button{
+  width: 10rem !important;
+  border-radius: 10px !important;
+} */
 .contact img {
   width: 92%;
 }
@@ -512,7 +540,8 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   padding: 14px 48px;
   font-size: 18px;
   margin-top: 25px;
-  border-radius: 0;
+  border-radius: 10px;
+  width: 100%;
   position: relative;
   transition: 0.3s ease-in-out;
 }
@@ -522,6 +551,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 .contact form button:hover {
   color: #fff;
+  border-radius: 10px;
 }
 .contact form button::before {
   content: "";
