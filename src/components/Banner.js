@@ -55,7 +55,6 @@ export const Banner = () => {
             <TrackVisibility>
               {({ isVisible }) =>
               <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
-                <span className="tagline">Horizon Cusat</span>
                 <h1>{`Hi! We're Team Horizon ,CUSAT`} <br/><span className="txt-rotate" dataPeriod="1000" data-rotate='[ "We make rovers"]'><span className="wrap">{text}</span></span></h1>
                   {/* <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p> */}
                   <button onClick={() => console.log('connect')}>
@@ -70,7 +69,7 @@ export const Banner = () => {
             <TrackVisibility>
               {({ isVisible }) =>
                 <div className={isVisible ? "animate__animated animate__zoomIn" : ""}>
-                  <img src={headerImg} alt="Header Img"/>
+                  <img src={headerImg} alt="Header Img" style={{ marginTop: '-80px', marginBottom: '20px' }}/>
                 </div>}
             </TrackVisibility>
           </Col>

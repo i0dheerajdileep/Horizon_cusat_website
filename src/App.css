@@ -231,7 +231,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 
 /* CSS */
-/* CSS */
+/* CSS */nner
 .logo {
   height: 5rem;
   width: 12rem;
@@ -492,7 +492,10 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 
 /************ Projects Css ************/
 .contact {
-  background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
+  background-image: url('./assets/img/banner-bg.png');
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
   padding: 60px 0 200px 0;
 }
 /* .send-button{
