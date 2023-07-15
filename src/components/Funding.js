@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ConfettiExplosion from 'react-confetti-explosion';
 import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -9,6 +9,25 @@ const Funding = () => {
   const [donationMessage, setDonationMessage] = useState('');
   const [isExploding, setIsExploding] = useState(false);
   const [donationCount, setDonationCount] = useState(0);
+  const [isMobileView, setIsMobileView] = useState(false);
+
+  useEffect(() => {
+    // Function to check if the current view is mobile
+    const checkIsMobileView = () => {
+      setIsMobileView(window.innerWidth < 768); // Adjust the breakpoint as needed
+    };
+
+    // Add event listener for window resize
+    window.addEventListener('resize', checkIsMobileView);
+
+    // Initial check for the current view
+    checkIsMobileView();
+
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener('resize', checkIsMobileView);
+    };
+  }, []);
 
   const handleDonate = () => {
     // ... (existing donation logic)
@@ -27,6 +46,7 @@ const Funding = () => {
   };
 
   const componentStyles = {
+    // Styles for the main container
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -39,7 +59,7 @@ const Funding = () => {
     width: '100%',
     maxWidth: '95%',
     height: 'auto',
-    maxHeight:'35em',
+    maxHeight: '35em',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     border: '1px solid #888', // Use a darker color for the border, such as #888
   };
@@ -51,7 +71,7 @@ const Funding = () => {
     fontWeight: 'bold',
     textAlign: 'center',
     marginTop: '50px',
-    paddingTop: ' 70px',
+    paddingTop: '70px',
   };
 
   const headingStyles = {
@@ -107,7 +127,16 @@ const Funding = () => {
     <div id="funding-component" style={componentStyles}>
       {isExploding && <ConfettiExplosion />}
       <h1 style={mainHeadingStyles}>Sponsor Us</h1>
-      <div style={{ display: 'flex', justifyContent: 'center', width: '100%', alignItems: 'center',paddingBottom:'50px' }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          width: '100%',
+          alignItems: 'center',
+          paddingBottom: '50px',
+          flexDirection: isMobileView ? 'column' : 'row', // Flex direction changes for mobile view
+        }}
+      >
         <div style={cardStyles}>
           <h2 style={headingStyles}>Help Us Reach<br />Our Goal!</h2>
           <p style={{ color: '#fff', marginBottom: '10px' }}>Our Fundraising Target: Goal: ${requiredFunds}</p>
@@ -123,38 +152,41 @@ const Funding = () => {
             <p style={{ marginBottom: '10px', fontSize: '16px' }}>{donationMessage}</p>
           )}
         </div>
-        <div style={{ width: 500, height: 500, margin: '0 50px' }}>
-          <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-            <div
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                zIndex: 1,
-              }}
-            >
-              <CircularProgressbarWithChildren
-                value={(fundsRaised / requiredFunds) * 100}
-                strokeWidth={5} // Set the stroke width to make it thinner
-                styles={{
-                  path: {
-                    stroke: '#f50057', // Set the color to pink
-                    strokeLinecap: 'butt',
-                  },
-                  trail: {
-                    stroke: '#ccc', // Set the color of the progress bar outline
-                    strokeLinecap: 'butt',
-                  },
+        {/* Conditionally render the progress bar based on the view */}
+        {!isMobileView && (
+          <div style={{ width: 500, height: 500, margin: '0 50px' }}>
+            <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  zIndex: 1,
                 }}
               >
-                <p style={{ color: '#888', textAlign: 'center', fontSize: '14px' }}>
-                  Raised: ${fundsRaised} of<br/> ${requiredFunds} total
-                </p>
-              </CircularProgressbarWithChildren>
+                <CircularProgressbarWithChildren
+                  value={(fundsRaised / requiredFunds) * 100}
+                  strokeWidth={5} // Set the stroke width to make it thinner
+                  styles={{
+                    path: {
+                      stroke: '#f50057', // Set the color to pink
+                      strokeLinecap: 'butt',
+                    },
+                    trail: {
+                      stroke: '#ccc', // Set the color of the progress bar outline
+                      strokeLinecap: 'butt',
+                    },
+                  }}
+                >
+                  <p style={{ color: '#888', textAlign: 'center', fontSize: '14px' }}>
+                    Raised: ${fundsRaised} of ${requiredFunds} total
+                  </p>
+                </CircularProgressbarWithChildren>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
