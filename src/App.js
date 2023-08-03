@@ -7,7 +7,8 @@ import { Skills } from "./components/Skills";
 import { Projects } from "./components/Projects";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
-import Funding from './components/Funding';
+import Funding from './components/Funding/Funding';
+import Newsfeed from './components/News/Newsfeed';
 
  function App() {
   return (
@@ -16,6 +17,7 @@ import Funding from './components/Funding';
       <Banner />
       <Skills />
       <Funding/>
+      <Newsfeed/>
       <Projects />
       <Contact />
       <Footer />
