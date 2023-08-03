@@ -639,3 +639,52 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
     max-width: 100%;
   }
 }
+/* qr code  */
+/* Qrpopup.css */
+/* Newsfeed.css */
+
+/* Main newsfeed container */
+.newsfeed-container {
+  background-color: #121212; /* Dark background color */
+  color: #ffffff; /* White text color */
+  padding: 20px;
+}
+
+.newsfeed-heading {
+  color: #ff69b4; /* Pinkish color for the heading */
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.news-item {
+  margin-bottom: 20px;
+}
+
+.news-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.news-author {
+  font-size: 16px;
+  color: #aaaaaa; /* Lighter gray for the author */
+}
+
+.news-content {
+  font-size: 16px;
+}
+.news-image {
+  width: 100px; /* Set the width to 100px to make it small */
+  height: 100px; /* Set the height to 100px to make it square */
+  object-fit: cover; /* Make the image fill the entire square */
+  margin-bottom: 10px;
+}
+
+
+.news-date {
+  font-size: 14px;
+  color: #aaaaaa; /* Lighter gray for the date */
+  margin-left: 3px; /* Add 3px gap between the author and the date */
+  display: inline-block; /* Make the author and date appear in the same line */
+}
