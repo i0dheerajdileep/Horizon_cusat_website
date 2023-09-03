@@ -1,42 +1,58 @@
-import React from 'react';
-// import './Newsfeed.css';
+import React, { useState, useEffect } from 'react';
 
 const Newsfeed = () => {
-  // Sample news data
-  const newsData = [
-    {
-      id: 1,
-      title: 'Breaking News: A New Planet Discovered!',
-      author: 'John Doe',
-      content: 'Astronomers have discovered a new habitable exoplanet in a nearby star system...',
-      date: '2023-07-22',
-      imageUrl: 'https://picsum.photos/200/300?random=1',
-    },
-    {
-      id: 2,
-      title: 'Space Exploration Milestone: Humans Land on Mars!',
-      author: 'Jane Smith',
-      content: 'After years of preparation, the first human crew has successfully landed on Mars...',
-      date: '2023-07-20',
-      imageUrl: 'https://picsum.photos/200/300?random=1',
-    },
-    // Add more news items as needed...
-  ];
+  const [newsData, setNewsData] = useState([]);
+  const [showMore, setShowMore] = useState(false);
+  const initialNewsToShow = 2; // Initial number of news items to show without blur
+  const apiUrl = 'https://eapzt4pdeypqt63lsjxtahfhcm0awrvd.lambda-url.us-east-1.on.aws/get_news';
+
+  useEffect(() => {
+    fetch(apiUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((jsonData) => {
+        setNewsData(jsonData);
+      })
+      .catch((error) => {
+        console.error('There was a problem fetching the data:', error);
+      });
+  }, []);
+
+  const toggleShowMore = () => {
+    setShowMore(!showMore);
+  };
 
   return (
-    <div className="newsfeed-container">
+    <div className="newsfeed-container" id='news'>
       <h1 className="newsfeed-heading">News Feed</h1>
-      {newsData.map((item) => (
-        <div key={item.id} className="news-item">
-          <h2 className="news-title">{item.title}</h2>
-          <p className="news-author">Author: {item.author}</p>
-          <p className="news-content">{item.content}</p>
-          {item.imageUrl && (
-            <img className="news-image" src={item.imageUrl} alt={`News ${item.id}`} />
-          )}
-          <span className="news-date">{item.date}</span>
-        </div>
-      ))}
+      {newsData
+        .slice(0, showMore ? newsData.length : initialNewsToShow)
+        .map((item, index) => (
+          <div key={item.id} className={`news-item ${index >= initialNewsToShow && !showMore ? 'blur' : ''}`}>
+            <img
+              className="news-image"
+              src={item.attachments && item.attachments.length > 0 ? item.attachments[0] : ''}
+              // alt={`Attachment ${item.id}`}
+            />
+            <div className="news-content-container">
+              <h2 className="news-title">{item.title}</h2>
+              <p className="news-content">{item.content}</p>
+              <p className="news-author">Author: {item.author}</p>
+            </div>
+          </div>
+        ))}
+      {!showMore && (
+        <button
+          onClick={toggleShowMore}
+          className="see-more-btn "
+        >
+          See More
+        </button>
+      )}
     </div>
   );
 };
