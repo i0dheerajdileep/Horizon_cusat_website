@@ -597,6 +597,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   width: 100%;
   margin-bottom: 20px;
   text-align: center;
+  
 }
 
 .newsletter-input-box {
@@ -644,47 +645,63 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 /* Newsfeed.css */
 
 /* Main newsfeed container */
-.newsfeed-container {
-  background-color: #121212; /* Dark background color */
-  color: #ffffff; /* White text color */
-  padding: 20px;
-}
-
-.newsfeed-heading {
-  color: #ff69b4; /* Pinkish color for the heading */
-  font-size: 28px;
-  margin-bottom: 20px;
-}
-
 .news-item {
+  display: flex;
+  background-color: transparent;
+  padding: 20px;
   margin-bottom: 20px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.news-content-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 6px;
 }
 
 .news-title {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 20px;
   margin-bottom: 10px;
-}
-
-.news-author {
-  font-size: 16px;
-  color: #aaaaaa; /* Lighter gray for the author */
+  /* margin-left: 10px; */
 }
 
 .news-content {
   font-size: 16px;
-}
-.news-image {
-  width: 100px; /* Set the width to 100px to make it small */
-  height: 100px; /* Set the height to 100px to make it square */
-  object-fit: cover; /* Make the image fill the entire square */
   margin-bottom: 10px;
 }
 
-
-.news-date {
+.news-author {
   font-size: 14px;
-  color: #aaaaaa; /* Lighter gray for the date */
-  margin-left: 3px; /* Add 3px gap between the author and the date */
-  display: inline-block; /* Make the author and date appear in the same line */
+  color: #555;
+  margin-bottom: 10px;
+  /* margin-left: 4px; */
+}
+
+.news-image {
+  width: 250px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.see-more-btn {
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 40px;
+}
+
+.see-more-btn:hover {
+  background-color: #f0f0f0;
+}
+.newsfeed-heading{
+  margin: 20px;
+  margin: 25px !important;
+
 }
